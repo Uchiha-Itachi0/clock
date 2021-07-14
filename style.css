@@ -1,0 +1,141 @@
+/* If you want a simple clock you can stop the animation of color changing. */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Centering the clock */
+
+body{
+    background: rgb(30, 30, 30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main container of clock and colors */
+.glow-container{
+    position: relative;
+    background: black;
+    height: 30vw;
+    width: 30vw;
+    border-radius: 50%;
+
+    /* Done for changing color */
+    animation: animate 4s linear infinite;
+    box-shadow:
+    0 0 7px white,
+    0 0 10px white,
+    0 0 21px white,
+    0 0 15px white,
+    0 0 18px white,
+    0 0 42px red,
+    0 0 82px rgb(255, 0, 0),
+    0 0 92px rgb(253, 44, 44),
+    0 0 200px rgb(247, 74, 74);
+}
+
+
+
+/* Changing color */
+@keyframes animate {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+
+    100%{
+        filter: hue-rotate(360deg);
+    }
+    
+}
+
+/* For responsiveness */
+@media screen and (max-width:700px){
+    .glow-container{
+        height: 50vw;
+        width: 50vw;
+    }
+}
+
+.clock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url("image/clock.png") no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Adding white circle at center */
+.clock::before{
+    content: "";
+    background: white;
+    z-index: 100;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+/* Setting the properties of hands */
+.clock .hr, .min, .sec{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+
+.hr{
+    width: 70%;
+    height: 50%;
+}
+.min{
+    width: 59%;
+    height: 72%;
+}
+.sec{
+    width: 28%;
+    height: 100%;
+}
+
+
+/* Setting the size of each clock hand. I done it using chrome devtool you can do the same mess around a bit and adjust the size of your like */
+.hr::before{
+    content: "";
+    position: absolute;
+    width: 4%;
+    height: 35%;
+    top: 15%;
+    background: red;
+    border-radius: 9px 9px 0 0;
+    z-index: 10;
+}
+
+.min::before{
+    content: "";
+    position: absolute;
+    width: 4%;
+    height: 35%;
+    top: 15%;
+    background: green;
+    border-radius: 9px 9px 0 0;
+    z-index: 10;
+}
+
+.sec::before{
+    content: "";
+    position: absolute;
+    width: 4%;
+    height: 48%;
+    top: 15%;
+    background: yellow;
+    border-radius: 9px 9px 0 0;
+    z-index: 10;
+}
+
